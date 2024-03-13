@@ -24,7 +24,6 @@ function MainScreen({ addItemToOrder }) {
                         handleClick={seleltCategory}
                     />
                 ))}
-
             {category && (
                 <div className="products-main">
                     <Button variant="dark" onClick={() => setCategory("")}>

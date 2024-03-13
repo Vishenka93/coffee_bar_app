@@ -1,10 +1,14 @@
 import Order from "./components/Order";
 import MainScreen from "./components/MainScreen";
-import { useState } from "react";
-// import { products } from "./consts/Products";
+import { useState, useEffect } from "react";
+import GetCurrentDateStr from "./helpers/GetCurrentDateStr";
+import Statistic from "./components/Statistic";
+
+const local = localStorage.getItem("orders");
+const localOrders = local === null ? [] : JSON.parse(local);
 
 function App() {
-    // const [orders, setOrders] = useState([]);
+    const [orders, setOrders] = useState(localOrders);
     const [currentOrder, setCurrentOrder] = useState([]);
 
     function addItemToOrder(id, name, price) {
@@ -47,15 +51,35 @@ function App() {
         );
     }
 
-    console.log(currentOrder);
+    function clearOrder() {
+        setCurrentOrder([]);
+    }
+
+    function confirmOrder() {
+        setOrders((prev) => [
+            ...prev,
+            {
+                order: currentOrder,
+                date: Date.now(),
+            },
+        ]);
+        clearOrder();
+    }
+
+    useEffect(() => {
+        localStorage.setItem("orders", JSON.stringify(orders));
+    }, [orders]);
 
     return (
         <div className="wrapper">
             <MainScreen addItemToOrder={addItemToOrder} />
             <Order
+                cancelOrder={clearOrder}
                 currentOrder={currentOrder}
                 itemChangeQuantity={itemChangeQuantity}
+                confirmOrder={confirmOrder}
             />
+            <Statistic orders={orders} />
         </div>
     );
 }

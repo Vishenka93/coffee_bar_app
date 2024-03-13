@@ -1,9 +1,14 @@
 import OrderRow from "./OrderRow";
 import { getOrderAmount } from "../helpers/GetOrderAmount";
-function Order({ currentOrder, itemChangeQuantity }) {
-    const amount = getOrderAmount(currentOrder);
+import Button from "react-bootstrap/Button";
 
-    console.log(amount);
+function Order({
+    currentOrder,
+    itemChangeQuantity,
+    cancelOrder,
+    confirmOrder,
+}) {
+    const amount = getOrderAmount(currentOrder);
 
     return (
         <div className="order">
@@ -18,6 +23,8 @@ function Order({ currentOrder, itemChangeQuantity }) {
                 />
             ))}
             <p>total: {amount} UAH</p>
+            <Button onClick={() => cancelOrder()}>Cancel</Button>
+            <Button onClick={() => confirmOrder()}>Confirm</Button>
         </div>
     );
 }
