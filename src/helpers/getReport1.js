@@ -36,10 +36,3 @@ function getReport1(orders) {
 }
 
 export default getReport1;
-
-{
-    /* <th>Name</th>
-                        <th>Price</th>
-                        <th>Quantity</th>
-                        <th>Amount</th> */
-}
