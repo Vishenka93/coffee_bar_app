@@ -1,8 +1,9 @@
-import Order from "./components/Order";
-import MainScreen from "./components/MainScreen";
 import { useState, useEffect } from "react";
-import GetCurrentDateStr from "./helpers/GetCurrentDateStr";
-import Statistic from "./components/Statistic";
+// import GetCurrentDateStr from "./helpers/GetCurrentDateStr";
+// import Statistic from "./components/Statistic";
+// import { Order, MainScreen } from "./components";
+import Dashboard from "./components/Dashboard";
+import GenereatPdf from "./helpers/GenereatPdf";
 
 const local = localStorage.getItem("orders");
 const localOrders = local === null ? [] : JSON.parse(local);
@@ -10,8 +11,9 @@ const localOrders = local === null ? [] : JSON.parse(local);
 function App() {
     const [orders, setOrders] = useState(localOrders);
     const [currentOrder, setCurrentOrder] = useState([]);
+    // const [orderDash, setOrderDash] = useState();
 
-    function addItemToOrder(id, name, price) {
+    function addItemToOrder(id, name, price, category) {
         if (currentOrder.some((item) => item.id === id)) {
             setCurrentOrder((prev) =>
                 prev.map((item) =>
@@ -31,6 +33,7 @@ function App() {
                     name: name,
                     quantity: 1,
                     price: price,
+                    category: category,
                 },
             ]);
         }
@@ -60,7 +63,7 @@ function App() {
             ...prev,
             {
                 order: currentOrder,
-                date: Date.now(),
+                date: new Date().toString().slice(4, 24),
             },
         ]);
         clearOrder();
@@ -69,17 +72,17 @@ function App() {
     useEffect(() => {
         localStorage.setItem("orders", JSON.stringify(orders));
     }, [orders]);
-
+    // GenereatPdf();
     return (
         <div className="wrapper">
-            <MainScreen addItemToOrder={addItemToOrder} />
-            <Order
-                cancelOrder={clearOrder}
+            <Dashboard
+                addItemToOrder={addItemToOrder}
+                clearOrder={clearOrder}
                 currentOrder={currentOrder}
                 itemChangeQuantity={itemChangeQuantity}
                 confirmOrder={confirmOrder}
+                orders={orders}
             />
-            <Statistic orders={orders} />
         </div>
     );
 }

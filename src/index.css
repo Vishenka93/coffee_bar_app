@@ -2,6 +2,13 @@ body {
     font-family: "BioRhyme";
 }
 
+a {
+    text-decoration: none;
+}
+li {
+    list-style: none;
+}
+
 .wrapper {
     display: flex;
     padding: 20px;
@@ -136,7 +143,102 @@ body {
     background-color: #f2f2f2;
 }
 
-.table tr {
-    background-color: #b77d7d;
-    border-bottom: 1px solid #c59999;
+.righr-tr {
+    display: flex;
+    justify-content: end;
+}
+
+/*=========================================================================*/
+
+.wrapper-dashboard {
+    position: absolute;
+    z-index: 10;
+    background-color: #c1c0c0;
+    top: 0;
+    left: -300px;
+    width: 300px;
+    border: 1px solid #7d7d7df2;
+    padding-top: 30px;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    transition: left 0.3s ease 0s;
+}
+
+.dashboard-btn {
+    position: relative;
+    display: flex;
+    justify-content: end;
+}
+
+.btn-close {
+    position: absolute;
+    top: -20px;
+    right: -23px;
+}
+
+.dashboard-title {
+    margin-bottom: 40px;
+}
+
+.dashboard-open {
+    left: 0px;
+    transition: left 0.3s ease 0s;
+}
+
+.dashboard-items {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    width: 100%;
+    padding: 0;
+}
+
+.dashboard-item a {
+    color: #333;
+    font-weight: 700;
+    font-size: 20px;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    transition: all 0.3s ease 0s;
+}
+
+.dashboard-item {
+    padding: 10px;
+    transition: all 0.3s ease 0s;
+}
+
+.dashboard-item:hover {
+    transition: all 0.3s ease 0s;
+    background-color: #fff;
+}
+
+.main {
+    width: 100%;
+    height: 100%;
+}
+
+.a {
+    padding-left: 290px;
+    transition: padding-left 0.3s ease 0s;
+}
+.b {
+    padding-left: 0;
+    transition: padding-left 0.3s ease 0s;
+}
+
+.statistic {
+    width: 100%;
+}
+
+.reports {
+    display: flex;
+    flex-direction: column;
+
+    align-items: end;
+}
+
+.button-down {
+    width: 200px;
+    margin-bottom: 20px;
 }

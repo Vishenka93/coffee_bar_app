@@ -23,8 +23,12 @@ function Order({
                 />
             ))}
             <p>total: {amount} UAH</p>
-            <Button onClick={() => cancelOrder()}>Cancel</Button>
-            <Button onClick={() => confirmOrder()}>Confirm</Button>
+            {currentOrder.length !== 0 && (
+                <>
+                    <Button onClick={() => cancelOrder()}>Cancel</Button>
+                    <Button onClick={() => confirmOrder()}>Confirm</Button>
+                </>
+            )}
         </div>
     );
 }

@@ -5,7 +5,7 @@ import Report1 from "../components/Reports/Report1";
 import Report2 from "../components/Reports/Report2";
 import Report3 from "../components/Reports/Report3";
 
-function Statistic({ orders }) {
+function Statistic({ orders, desplayDash }) {
     const [selectedReport, setSelectedReport] = useState(reports[0]);
 
     const maping = {
@@ -15,7 +15,7 @@ function Statistic({ orders }) {
     };
 
     return (
-        <>
+        <div className={`statistic ${desplayDash ? "b" : "a"}`}>
             <Dropdown onSelect={(eventKey) => setSelectedReport(eventKey)}>
                 <Dropdown.Toggle variant="primary" id="dropdown-basic">
                     {selectedReport}
@@ -30,7 +30,7 @@ function Statistic({ orders }) {
                 </Dropdown.Menu>
             </Dropdown>
             {maping[selectedReport]}
-        </>
+        </div>
     );
 }
 
